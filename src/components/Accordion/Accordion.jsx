@@ -46,8 +46,6 @@ export default Accordion;
 
 
 
-
-
 // this will allow us to use the Accordion item component without importing it wherever is is used
 Accordion.Item = AccordionItem;
 Accordion.Title = AccordionTitle;
