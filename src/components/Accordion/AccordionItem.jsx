@@ -1,24 +1,27 @@
-import React, { Children } from 'react'
-import { useAccordionContext } from './Accordion'
-
-const AccordionItem = ({ id, className, children, title }) => {
-
-    // here we destructure the context hook 
-    const { toggleItem, openItemId } = useAccordionContext();
+import React, { Children, createContext, useContext } from 'react'
 
 
-    // here we check if the openItem id is equal to the id we receive by the .
-    const isOpen = openItemId === id
+const AccordionItemContext = createContext()
 
 
+export const useAccordionItemContext = () => {
+  const ctx = useContext(AccordionItemContext)
+
+  if (!ctx) {
+    throw new Error('Accordionitem related components must be wrapped by <Accordion.Item>')
+  }
+
+  return ctx
+}
+
+const AccordionItem = ({id, className, children }) => {
 
   return (
-    <li className={className}>
-      <h3 onClick={() => toggleItem(id)}>{title}</h3>
-      <div className={ isOpen ? 'accordion-item-content open' : 'accordion-item-content' }>
+    <AccordionItemContext.Provider value={id}>
+      <li className={className}>
         {children}
-      </div>
-    </li>
+      </li>      
+    </AccordionItemContext.Provider>
   )
 }
 

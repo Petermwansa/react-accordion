@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState } from 'react'
 import AccordionItem from './AccordionItem';
+import AccordionTitle from './AccordionTitle';
+import AccordionContent from './AccordionContent';
 
 
 const AccordionContext = createContext();
@@ -16,7 +18,6 @@ export const useAccordionContext = () => {
 
     return ctx;
 }
-
 
 const Accordion = ({ children, className }) => {
 
@@ -45,5 +46,9 @@ export default Accordion;
 
 
 
+
+
 // this will allow us to use the Accordion item component without importing it wherever is is used
-Accordion.Item = AccordionItem
+Accordion.Item = AccordionItem;
+Accordion.Title = AccordionTitle;
+Accordion.Content = AccordionContent;
